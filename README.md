@@ -21,25 +21,28 @@ CRUD와, JWT 기반의 무상태(Stateless) 인증 아키텍처와 도메인 주
 
 ## 📌 Core Features & API Endpoints
 
+## ERD
+![ERD](docs/erd.png)
+
 ### 1. User (회원)
-- `POST /api/users/signup` : 이메일/비밀번호 기반 회원가입
-- `POST /api/users/login` : JWT 인증 토큰 발급 (로그인)
+- `POST /api/auth/signup` : 이메일/비밀번호 기반 회원가입
+- `POST /api/auth/login` : JWT 인증 토큰 발급 (로그인)
 
 ### 2. Post (게시물)
 - `POST /api/posts` : 새 게시물 작성 (JWT 요구)
 - `GET /api/posts` : 게시물 전체 페이징 조회
-- `GET /api/posts/search` : 특정 작성자(이메일) 기준 게시물 조회
+- `GET /api/posts?email={email}` : 특정 작성자(이메일) 기준 게시물 조회
 - `PUT /api/posts/{id}` : 본인 게시물 수정
 - `DELETE /api/posts/{id}` : 본인 게시물 삭제
 
 ### 3. Comment (댓글)
-- `POST /api/posts/{postId}/comments` : 특정 게시물에 댓글 작성
+- `POST /api/comments/{postId}` : 특정 게시물에 댓글 작성
 - `PUT /api/comments/{id}` : 본인 댓글 수정
 - `DELETE /api/comments/{id}` : 본인 댓글 삭제
 
 ### 4. Like (좋아요)
-- `POST /api/posts/{postId}/likes` : 게시물 좋아요
-- `DELETE /api/posts/{postId}/likes` : 게시물 좋아요 취소
+- `POST /api/likes/{postId}` : 게시물 좋아요
+- `DELETE /api/likes/{postId}` : 게시물 좋아요 취소
 
 ## 🔐 Security (JWT)
 - **Stateless Authentication:** 세션을 사용하지 않고 JWT 헤더(`Bearer`)를 통한 무상태 인증 구현
