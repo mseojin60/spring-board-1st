@@ -53,4 +53,4 @@ CRUD와, JWT 기반의 무상태(Stateless) 인증 아키텍처와 도메인 주
 
 ## 📄 API Documentation
 프로젝트 실행 후, 아래 URL을 통해 Swagger UI에서 상세한 API 명세와 직접 테스트를 진행할 수 있습니다.
-- **Swagger UI:** `http://localhost:8080/swagger-ui.html`
+- **Swagger UI:** `https://spring-board-1st.onrender.com/swagger-ui/index.html`
