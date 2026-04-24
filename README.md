@@ -5,6 +5,9 @@
 본 프로젝트는 SNS의 핵심 기능(게시판, 댓글, 좋아요, 회원 인증)을 구현한 **RESTful API 백엔드 엔진**입니다.
 CRUD와, JWT 기반의 무상태(Stateless) 인증 아키텍처와 도메인 주도(Domain-Driven) 패키지 설계를 적용하여 확장성과 유지보수성을 극대화했습니다.
 
+> **[실시간 배포 주소]** : [https://spring-board-1st.onrender.com/](https://spring-board-1st.onrender.com/)  
+> (※ 현재 백엔드 엔진 배포 완료. 접속 시 안내 문구가 출력됩니다.)
+
 ## 🛠️ Tech Stack
 - **Language:** Java 21
 - **Framework:** Spring Boot 3.4.5
