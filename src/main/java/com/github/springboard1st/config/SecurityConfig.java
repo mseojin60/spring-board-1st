@@ -44,6 +44,8 @@ public class SecurityConfig {
                         .requestMatchers("/css/**", "/js/**", "/images/**", "/index.html", "/").permitAll()  // 프론트 정적 파일 허용
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/posts").permitAll()
+                        .requestMatchers("/api/comments/**").permitAll()
+                        .requestMatchers("/api/likes/**").permitAll()
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
                         .anyRequest().authenticated()
                 )
