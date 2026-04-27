@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
@@ -20,17 +22,10 @@ public class PostController {
     // 전체 조회
     @GetMapping
     public ResponseEntity<List<PostResponse>> getAllPosts(
-            @RequestParam(required = false) String email) {
-        if (email != null) {
-            return ResponseEntity.ok(postService.getPostsByEmail(email)
-                    .stream()
-                    .map(PostResponse::new)
-                    .toList());
-        }
-        return ResponseEntity.ok(postService.getAllPosts()
-                .stream()
-                .map(PostResponse::new)
-                .toList());
+            @RequestParam(required = false) String email,
+            @AuthenticationPrincipal UserDetails userDetails) {
+        String loginEmail = userDetails != null ? userDetails.getUsername() : null;
+        return ResponseEntity.ok(postService.getAllPosts(loginEmail));
     }
 
     // 게시물 생성

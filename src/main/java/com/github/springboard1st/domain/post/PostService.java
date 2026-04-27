@@ -1,13 +1,18 @@
 package com.github.springboard1st.domain.post;
 
+import com.github.springboard1st.domain.comment.dto.CommentResponse;
+import com.github.springboard1st.domain.like.LikeRepository;
 import com.github.springboard1st.domain.post.dto.PostRequest;
+import com.github.springboard1st.domain.post.dto.PostResponse;
 import com.github.springboard1st.domain.user.User;
 import com.github.springboard1st.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
@@ -18,10 +23,22 @@ public class PostService {
 
     private final PostRepository postRepository;
     private final UserRepository userRepository;
+    private final LikeRepository likeRepository;
 
     // 전체 조회
-    public List<Post> getAllPosts() {
-        return postRepository.findAll();
+    public List<PostResponse> getAllPosts(String email) {
+        User user = email != null ? userRepository.findByEmail(email).orElse(null) : null;
+
+        List<Post> posts = postRepository.findAll();
+
+        return posts.stream().map(post -> {
+            int likeCount = likeRepository.countByPost(post);
+            boolean liked = user != null && likeRepository.existsByUserAndPost(user, post);
+            List<CommentResponse> comments = post.getComments().stream()
+                    .map(CommentResponse::new)
+                    .collect(Collectors.toList());
+            return new PostResponse(post, likeCount, liked, comments);
+        }).collect(Collectors.toList());
     }
 
     // 이메일로 조회

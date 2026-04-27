@@ -18,29 +18,29 @@ repositories {
 }
 
 dependencies {
-    // Web
+    // Web - REST API 만드는 데 필요한 것들 다 포함. @RestController, @GetMapping 같은 어노테이션
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    // JPA
+    // JPA - DB 접근 담당. @Entity, @Repository, findById() 같은 거 쓸 수 있게 해줘. SQL 직접 안 써도 됨.
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    // Security
+    // Security - 인증/인가 담당. JWT 필터 붙인 것도 여기 기반.
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    // Validation
+    // Validation - @NotBlank, @Email 같은 유효성 검사 어노테이션 쓸 수 있게함
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-    // MySQL
+    // MySQL - Java랑 MySQL 연결해주는 드라이버. runtimeOnly 는 실행할 때만 필요하다는 뜻.
     runtimeOnly 'com.mysql:mysql-connector-j'
 
     // JWT
-    implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
-    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'
-    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.6'    // JWT 인터페이스
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'      // jwt 구현체
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'   // JSON 변환
 
     // Lombok
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'              // 컴파일할 때만 필요, 실행파일엔 포함 안 됨
+    annotationProcessor 'org.projectlombok:lombok'      // @Getter, @Builder, @RequiredArgsConstructor 자동 생성
 
     // Swagger
-    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.8'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.8'    // API 문서 자동 생성. http://localhost:8080/swagger-ui/index.html 에서 확인 가능
 
     // Test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

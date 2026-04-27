@@ -12,12 +12,12 @@ import lombok.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true) // NOT NULL, UNIQUE
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false) // NOT NULL
     private String password;
 }

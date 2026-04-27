@@ -6,7 +6,6 @@ import lombok.Getter;
 @Getter
 public class PostRequest {
 
-    @NotBlank
     private String title;
 
     @NotBlank

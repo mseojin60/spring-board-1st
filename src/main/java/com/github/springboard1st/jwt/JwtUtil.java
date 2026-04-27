@@ -54,6 +54,7 @@ public class JwtUtil {
         }
     }
 
+    // 토큰 파싱
     private Claims getClaims(String token) {
         return Jwts.parser()
                 .verifyWith(secretKey)

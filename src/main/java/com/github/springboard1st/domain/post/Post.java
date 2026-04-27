@@ -1,6 +1,7 @@
 package com.github.springboard1st.domain.post;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.github.springboard1st.domain.comment.Comment;
 import com.github.springboard1st.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -22,7 +25,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String title;
 
     @Column(nullable = false, columnDefinition = "TEXT")
@@ -52,5 +55,8 @@ public class Post {
         this.title = title;
         this.content = content;
     }
+
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Comment> comments = new ArrayList<>();
 
 }
