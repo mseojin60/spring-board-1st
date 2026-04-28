@@ -5,10 +5,7 @@ import com.github.springboard1st.domain.post.dto.PostResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
@@ -22,10 +19,8 @@ public class PostController {
     // 전체 조회
     @GetMapping
     public ResponseEntity<List<PostResponse>> getAllPosts(
-            @RequestParam(required = false) String email,
-            @AuthenticationPrincipal UserDetails userDetails) {
-        String loginEmail = userDetails != null ? userDetails.getUsername() : null;
-        return ResponseEntity.ok(postService.getAllPosts(loginEmail));
+            @AuthenticationPrincipal String email) {
+        return ResponseEntity.ok(postService.getAllPosts(email));
     }
 
     // 게시물 생성

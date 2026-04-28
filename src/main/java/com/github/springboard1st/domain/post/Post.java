@@ -2,6 +2,7 @@ package com.github.springboard1st.domain.post;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.springboard1st.domain.comment.Comment;
+import com.github.springboard1st.domain.like.Like;
 import com.github.springboard1st.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -56,7 +57,10 @@ public class Post {
         this.content = content;
     }
 
-    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
 
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Like> likes = new ArrayList<>();
 }
+
