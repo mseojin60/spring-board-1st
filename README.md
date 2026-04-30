@@ -6,7 +6,6 @@
 CRUD와, JWT 기반의 무상태(Stateless) 인증 아키텍처와 도메인 주도(Domain-Driven) 패키지 설계를 적용하여 확장성과 유지보수성을 극대화했습니다.
 
 > **[실시간 배포 주소]** : [https://spring-board-1st.onrender.com/](https://spring-board-1st.onrender.com/)  
-> (※ 접속 시 프론트엔드 배포 환경으로 리다이렉트됩니다.)
 > **[Frontend 깃허브 레포]** : https://github.com/mseojin60/spring-board-front-1st.git
 
 (※ 현재 백엔드 엔진 및 프론트엔드 연동 배포 완료.)
