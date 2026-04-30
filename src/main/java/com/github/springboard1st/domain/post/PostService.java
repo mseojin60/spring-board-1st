@@ -79,7 +79,7 @@ public class PostService {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시물입니다."));
 
         if (!post.getUser().getEmail().equals(email)) {
-            throw new IllegalArgumentException("삭제 권한이 업습니다.");
+            throw new IllegalArgumentException("삭제 권한이 없습니다.");
         }
 
         postRepository.delete(post);
